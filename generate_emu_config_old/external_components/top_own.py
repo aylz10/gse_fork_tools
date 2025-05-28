@@ -44,25 +44,25 @@ def top_owners():
                     top_owner_id = GetListOfSubstrings(line,'profile/','/')[0]
 
                     if not os.path.exists("top_owners_ids.txt"):
-                        with open("top_owners_ids.txt", 'w') as f_txt:
+                        with open("top_owners_ids.txt", 'w', encoding='utf-8') as f_txt:
                             f_txt.close()
 
-                    with open("top_owners_ids.txt", 'a') as f_txt:
+                    with open("top_owners_ids.txt", 'a', encoding='utf-8') as f_txt:
                         f_txt.write(f'{top_owner_id}\n')
                         f_txt.close()
 
                     if not os.path.exists("top_owners_ids_alt1.txt"):
-                        with open("top_owners_ids_alt1.txt", 'w') as f_txt:
+                        with open("top_owners_ids_alt1.txt", 'w', encoding='utf-8') as f_txt:
                             f_txt.close()
 
-                    with open("top_owners_ids_alt1.txt", 'a') as f_txt:
+                    with open("top_owners_ids_alt1.txt", 'a', encoding='utf-8') as f_txt:
                         f_txt.write(f'{top_owner_id},\n')
                         f_txt.close()
 
                     if not os.path.exists("top_owners_ids_alt2.txt"):
-                        with open("top_owners_ids_alt2.txt", 'w') as f_txt:
+                        with open("top_owners_ids_alt2.txt", 'w', encoding='utf-8') as f_txt:
                             f_txt.close()
 
-                    with open("top_owners_ids_alt2.txt", 'a') as f_txt:
+                    with open("top_owners_ids_alt2.txt", 'a', encoding='utf-8') as f_txt:
                         f_txt.write(f'#{top_owner_id},\n')
                         f_txt.close()

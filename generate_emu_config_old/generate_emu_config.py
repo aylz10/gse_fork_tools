@@ -1065,7 +1065,7 @@ def main():
         REFRESH_TOKENS = os.path.join(get_exe_dir(False), "refresh_tokens.json") # replaced 'RELATIVE_DIR with 'False' to always look for or create refresh_tokens.json in generate_emu_config folder
         refresh_tokens = {}
         if os.path.isfile(REFRESH_TOKENS):
-            with open(REFRESH_TOKENS) as f:
+            with open(REFRESH_TOKENS, encoding='utf-8') as f:
                 try:
                     lf = json.load(f)
                     refresh_tokens = lf if isinstance(lf, dict) else {}
@@ -1124,13 +1124,13 @@ def main():
             result = client.login(USERNAME, PASSWORD, REFRESH_TOKEN)
 
         if SAVE_REFRESH_TOKEN:
-            with open(REFRESH_TOKENS, 'w') as f:
+            with open(REFRESH_TOKENS, 'w', encoding='utf-8') as f:
                 refresh_tokens.update({USERNAME: REFRESH_TOKEN})
                 json.dump(refresh_tokens,f,indent=4)
     
     '''
         if SAVE_REFRESH_TOKEN:
-            with open(REFRESH_TOKENS, 'w') as f:
+            with open(REFRESH_TOKENS, 'w', encoding='utf-8') as f:
                 refresh_tokens.update({USERNAME: REFRESH_TOKEN})
                 refresh_tokens_str = json.dumps(refresh_tokens,indent=4)
                 refresh_tokens_byt = refresh_tokens_str.encode('utf-8')
@@ -1267,7 +1267,7 @@ def main():
         if not os.path.exists(info_out_dir):
             os.makedirs(info_out_dir)
 
-        #with open(os.path.join(info_out_dir, "app_widget.url"), mode='w', newline='\r\n') as f:
+        #with open(os.path.join(info_out_dir, "app_widget.url"), mode='w', newline='\r\n', encoding='utf-8') as f:
             #f.write(f"[InternetShortcut]\nURL=https://store.steampowered.com/widget/{appid}/")
 
         print(f"[ ] Copying preset emu configs...")
@@ -1279,7 +1279,7 @@ def main():
             shutil.copytree(os.path.join(root_def_dir, str(appid)), base_out_dir, dirs_exist_ok=True) # copy from preset app dir
             print(f"[ ] __ app emu config from <DEF_DIR>\\{str(appid)} folder")
 
-        with open(os.path.join(emu_settings_dir, "steam_appid.txt"), 'w') as f:
+        with open(os.path.join(emu_settings_dir, "steam_appid.txt"), 'w', encoding='utf-8') as f:
             f.write(str(appid))
             #print(f"[ ] Writing 'steam_appid.txt'")
 
