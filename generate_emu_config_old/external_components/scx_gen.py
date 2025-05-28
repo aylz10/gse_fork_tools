@@ -29,7 +29,7 @@ def GetListOfSubstrings(stringSubject,string1,string2):
 
 # https://stackoverflow.com/a/13641746 # NOTE using this fix a strange issue where first name value of some ini files had starting and trailing double quotes ( " )
 def ReplaceStringInFile(f_file, search_string, old_string, new_string):
-    with open(f_file, 'r') as file:
+    with open(f_file, 'r', encoding='utf-8') as file:
         lines = file.readlines()
         #matching_lines = [line.strip() for line in lines if ' = "' in line]
         #return matching_lines
@@ -119,9 +119,9 @@ def download_scx(base_out_dir : str, appid : int):
                     if not os.path.exists(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{line_series_name_safe}')):
                         os.makedirs(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{line_series_name_safe}'))
                         if not os.path.exists(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt')):
-                            with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'w') as f_txt:
+                            with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'w', encoding='utf-8') as f_txt:
                                 f_txt.close()
-                        with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'a') as f_txt:
+                        with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'a', encoding='utf-8') as f_txt:
                             f_txt.write(f'{line_series_name_safe}\n')
                             f_txt.close()
 
@@ -130,9 +130,9 @@ def download_scx(base_out_dir : str, appid : int):
             if 'Last update:' in line:
                 last_update = GetListOfSubstrings(line, '>Last update: ', ' - ')[0]
                 if not os.path.exists(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_u.txt')):
-                    with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_u.txt'), 'w') as f_txt:
+                    with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_u.txt'), 'w', encoding='utf-8') as f_txt:
                         f_txt.close()
-                with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_u.txt'), 'a') as f_txt:
+                with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_u.txt'), 'a', encoding='utf-8') as f_txt:
                     f_txt.write(f'{last_update}\n')
                     f_txt.close()
 
@@ -140,7 +140,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Trading Cards"
                 _trading_cards_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[trading_cards]") 
                 #ini_cards_blue = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_trading_cards.ini"), encoding='utf-8', create_empty=True)
                 trading_cards_blue_count = 99
@@ -149,7 +149,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Foil Trading Cards"
                 _foil_trading_cards_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards_foil.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards_foil.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_trading_cards_foil.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[trading_cards_foil]")
                 #ini_cards_foil = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_trading_cards_foil.ini"), encoding='utf-8', create_empty=True)
                 trading_cards_foil_count = 99
@@ -161,7 +161,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Badges"
                 _badges_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[badges]") 
                 #ini_badges = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_badges.ini"), encoding='utf-8', create_empty=True)
                 badge_number = 0
@@ -169,7 +169,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Foil Badges"
                 _foil_badges_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges_foil.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges_foil.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_badges_foil.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[badges_foil]")
                 #ini_badges_foil = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_badges_foil.ini"), encoding='utf-8', create_empty=True)
                 badge_foil_number = 0
@@ -177,7 +177,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Emoticons"
                 _emoticons_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_emoticons.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_emoticons.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_emoticons.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[emoticons]")
                 #ini_emoticons = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_emoticons.ini"), encoding='utf-8', create_empty=True)
                 emoticon_number_small = 0
@@ -186,14 +186,14 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Backgrounds"
                 _backgrounds_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_backgrounds.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_backgrounds.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_backgrounds.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[backgrounds]")
                 #ini_backgrounds = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_backgrounds.ini"), encoding='utf-8', create_empty=True)
             elif f'<a href="{line_series_hash}-animatedstickers">' in line:
                 line_section = "Animated Stickers"
                 _animated_stickers_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_stickers.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_stickers.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_stickers.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[animated_stickers]") 
                 #ini_stickers = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_animated_stickers.ini"), encoding='utf-8', create_empty=True)
                 sticker_animated_number = 0
@@ -202,7 +202,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Animated Backgrounds"
                 _animated_backgrounds_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_backgrounds.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_backgrounds.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_backgrounds.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[animated_backgrounds]") 
                 #ini_animated_bg = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_animated_backgrounds.ini"), encoding='utf-8', create_empty=True)
                 animated_bg_number = 0
@@ -210,7 +210,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Animated Mini Backgrounds"
                 _animated_mini_backgrounds_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_mini_backgrounds.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_mini_backgrounds.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_mini_backgrounds.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[animated_mini_backgrounds]") 
                 #ini_animated_minibg = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_animated_mini_backgrounds.ini"), encoding='utf-8', create_empty=True)
                 animated_minibg_number = 0
@@ -218,7 +218,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Avatar Frames"
                 _avatar_frames_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_avatar_frames.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_avatar_frames.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_avatar_frames.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[avatar_frames]") 
                 #ini_avatar_frames = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_avatar_frames.ini"), encoding='utf-8', create_empty=True)
                 avatar_frame_count = 0
@@ -227,7 +227,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Animated Avatars"
                 _animated_avatars_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_avatars.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_avatars.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_animated_avatars.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[animated_avatars]") 
                 #ini_animated_avatars = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_animated_avatars.ini"), encoding='utf-8', create_empty=True)
                 animated_avatar_count = 0
@@ -236,7 +236,7 @@ def download_scx(base_out_dir : str, appid : int):
                 line_section = "Profiles"
                 _profiles_series = line_series_count
                 if not os.path.exists(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_profiles.ini")): 
-                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_profiles.ini"), 'w') as file: 
+                    with open(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name_safe}\\app_profiles.ini"), 'w', encoding='utf-8') as file: 
                         file.write("[profiles]") 
                 #ini_profiles = ConfigObj(os.path.join(base_out_dir, f"steam_misc\\app_scx\\{line_series_name}\\app_profiles.ini"), encoding='utf-8', create_empty=True)
                 profile_count = 0
@@ -851,7 +851,7 @@ def download_scx(base_out_dir : str, appid : int):
 
         if _game_found:
             os.remove(os.path.join(base_out_dir, 'steam_misc\\app_scx\\app_scx.txt'))
-            with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'r') as file:
+            with open(os.path.join(base_out_dir, f'steam_misc\\app_scx\\{appid}_s.txt'), 'r', encoding='utf-8') as file:
                 lines = []
                 for line in file:
                     lines.append(line)
